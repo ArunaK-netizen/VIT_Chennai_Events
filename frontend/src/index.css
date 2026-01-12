@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #3b82f6;
+    /* iOS Blue */
+    --color-primary-hover: #2563eb;
+
+    --color-surface: #151516;
+    /* Linear Gray Cards */
+    --color-surface-hover: #1F1F21;
+    --color-base: #000000;
+    /* True Black */
+}
+
+@layer base {
+    body {
+        @apply bg-[var(--color-base)] text-white antialiased font-sans;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        /* Inter features */
+    }
+
+    /* Global Input Reset for "Native" Feel */
+    input,
+    select,
+    textarea {
+        @apply bg-[#1F1F21] border-none rounded-lg text-white placeholder-gray-500 focus:ring-1 focus:ring-white/20 focus:outline-none transition-all duration-200;
+    }
+}
+
+/* Utilities */
+.glass-panel {
+    @apply bg-[#151516]/80 backdrop-blur-xl border border-white/5;
+}
+
+.glass-card {
+    @apply bg-[#151516] rounded-2xl border border-white/5;
+}
+
+.glass-input {
+    @apply w-full bg-[#0A0A0A] border-none rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:ring-1 focus:ring-[var(--color-primary)] transition-all;
+}
+
+.text-secondary {
+    @apply text-[#8A8F98];
+}
+
+/* Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
