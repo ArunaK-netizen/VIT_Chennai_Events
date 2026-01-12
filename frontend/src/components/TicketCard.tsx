@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import QRCode from 'react-qr-code';
-import { FiX, FiCalendar, FiMapPin, FiClock, FiUser, FiDownload, FiInfo } from 'react-icons/fi';
-import type { Registration, Event, User } from '../types';
+import { FiCalendar, FiMapPin, FiDownload } from 'react-icons/fi';
+import type { Registration, Event } from '../types';
 import { toPng } from 'html-to-image';
 import { toast } from '../lib/toast';
 
@@ -12,8 +12,7 @@ interface TicketCardProps {
 
 export default function TicketCard({ registration, onClose }: TicketCardProps) {
     const ticketRef = useRef<HTMLDivElement>(null);
-    const event = registration.event as Event;
-    const user = registration.creator as User; // Assuming the viewer is the creator or one of the team members. Ideally pass the actual logged in user but for now showing Creator/Reg details.
+    const event = registration.event as Event; // Assuming the viewer is the creator or one of the team members. Ideally pass the actual logged in user but for now showing Creator/Reg details.
 
     const handleDownload = async () => {
         if (!ticketRef.current) return;

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
     return (
-        <section className="flex items-center justify-center text-center" style={{ minHeight: 'calc(100vh - 10rem)' }}>
+        <section className="flex items-center justify-center text-center min-h-screen">
             <div className="max-w-3xl mx-auto px-4 py-20">
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-primary leading-tight">
                     Where Ideas Ignite &<br />Innovation Begins.

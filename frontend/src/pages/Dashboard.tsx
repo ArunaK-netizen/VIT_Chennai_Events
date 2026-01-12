@@ -33,7 +33,7 @@ export default function Dashboard() {
         if (user) fetchRegistrations();
     }, [user]);
 
-    const handlePay = async (regId: string, eventName: string) => {
+    const handlePay = async (regId: string) => {
         try {
             await client.post(`/registrations/${regId}/pay`);
             toast.success("Payment confirmed");
@@ -106,7 +106,7 @@ export default function Dashboard() {
                                                 </button>
                                             ) : (
                                                 <button
-                                                    onClick={() => handlePay(reg._id, event.name)}
+                                                    onClick={() => handlePay(reg._id)}
                                                     className="flex-1 bg-blue-600 text-white py-2 rounded-lg text-xs font-bold hover:bg-blue-500 transition-colors flex items-center justify-center gap-2 relative overflow-hidden"
                                                 >
                                                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/card:translate-y-0 transition-transform duration-300"></div>

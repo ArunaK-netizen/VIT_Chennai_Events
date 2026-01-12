@@ -5,7 +5,7 @@ import { FiGrid, FiCalendar, FiShoppingBag, FiUsers, FiCpu, FiUserCheck } from '
 export default function AdminNavbar() {
     const location = useLocation();
     const currentPath = location.pathname;
-    const { user, logout } = useAuth(); // Assuming logout availability, or just link to generic logout
+    const { user } = useAuth(); // Assuming logout availability, or just link to generic logout
 
     const links = [
         { href: '/admin', label: 'Overview', icon: FiGrid },
