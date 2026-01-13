@@ -139,6 +139,29 @@ async def create_registration(registration: RegistrationCreate, current_user: Us
                 "tokenExpires": None
             })
 
+    # 3. New Validation: Check if ANY team member (including creator) is already registered for this event
+    # We query for any registration for this event where teamMembers contains ANY of our new group
+    existing_reg = await db.registrations.find_one({
+        "event": registration.event,
+        "$or": [
+            {"teamMembers": {"$in": team_member_ids}},
+            {"creator": {"$in": team_member_ids}}
+        ]
+    })
+
+    if existing_reg:
+        # Find exactly who is already registered to give a better error message
+        conflicting_ids = [uid for uid in team_member_ids if uid in existing_reg.get("teamMembers", []) or str(uid) == str(existing_reg.get("creator"))]
+        
+        # Resolve names for better UX
+        conflicts = await db.users.find({"_id": {"$in": conflicting_ids}}).to_list(None)
+        conflict_names = ", ".join([u["name"] for u in conflicts])
+        
+        raise HTTPException(
+            status_code=400, 
+            detail=f"The following users are already registered for this event: {conflict_names}"
+        )
+
     # 3. Create Registration Document
     # Check if event is free
     is_free = event.get("fee", 0) == 0
