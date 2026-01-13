@@ -96,7 +96,9 @@ async def get_admin_events(admin: UserInDB = Depends(get_current_admin)):
          query = {
              "$or": [
                  {"studentCoordinators._id": user_id},
-                 {"facultyCoordinators._id": user_id}
+                 {"studentCoordinators.id": user_id},
+                 {"facultyCoordinators._id": user_id},
+                 {"facultyCoordinators.id": user_id}
              ]
          }
          
@@ -146,7 +148,10 @@ async def get_admin_events(admin: UserInDB = Depends(get_current_admin)):
             "unpaid": reg_count - paid_count,
             "amountCollected": revenue,
             "vitians": vitians_count,
-            "nonVitians": non_vitians_count
+            "nonVitians": non_vitians_count,
+            "isPinned": event.get("isPinned", False),
+            "isHidden": event.get("isHidden", False),
+            "registrationsOpen": event.get("registrationsOpen", True)
         }
         enriched_events.append(event_data)
     

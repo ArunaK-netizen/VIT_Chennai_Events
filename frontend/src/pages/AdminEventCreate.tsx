@@ -136,9 +136,35 @@ export default function AdminEventCreate() {
         <div className="max-w-4xl mx-auto glass-card p-8">
             <h1 className="text-3xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">{isEditMode ? 'Edit Event' : 'Add New Event'}</h1>
             <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                    <label className="block text-sm font-medium text-text-secondary">Event Name</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} required className="glass-input mt-1" />
+
+                <div className="flex md:flex-row flex-col gap-4">
+                    <div className="flex-1">
+                        <label className="block text-sm font-medium text-text-secondary">Event Name</label>
+                        <input type="text" name="name" value={formData.name} onChange={handleChange} required className="glass-input mt-1" />
+                    </div>
+                    <div className="flex items-end gap-4 pb-2">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="registrationsOpen"
+                                checked={formData.registrationsOpen}
+                                onChange={handleChange}
+                                className="w-5 h-5 rounded border-gray-600 bg-black/40 text-primary focus:ring-primary"
+                            />
+                            <span className="text-sm font-medium text-text-secondary">Registrations Open</span>
+                        </label>
+
+                        <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                name="isHidden"
+                                checked={formData.isHidden}
+                                onChange={handleChange}
+                                className="w-5 h-5 rounded border-gray-600 bg-black/40 text-primary focus:ring-primary"
+                            />
+                            <span className="text-sm font-medium text-text-secondary">Hidden (Draft)</span>
+                        </label>
+                    </div>
                 </div>
 
                 <div>
