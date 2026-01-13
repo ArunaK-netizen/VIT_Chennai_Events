@@ -95,6 +95,26 @@ export default function Dashboard() {
                                             )}
                                         </div>
 
+                                        {/* Team Members List */}
+                                        {reg.teamMembers && reg.teamMembers.length > 0 && (
+                                            <div className="mb-4 bg-black/20 rounded-lg p-3 border border-white/5">
+                                                <p className="text-[10px] font-bold text-gray-500 uppercase mb-2">Registered Members</p>
+                                                <div className="space-y-2">
+                                                    {reg.teamMembers.map((member: any) => (
+                                                        <div key={member._id} className="flex items-center gap-2">
+                                                            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 border border-white/10 flex items-center justify-center text-[8px] font-bold text-gray-300">
+                                                                {member.name.charAt(0)}
+                                                            </div>
+                                                            <div className="flex-1 min-w-0">
+                                                                <p className="text-xs font-medium text-gray-300 truncate">{member.name}</p>
+                                                                <p className="text-[10px] text-gray-500 truncate">{member.email}</p>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
                                         <div className="flex gap-2 mt-4">
                                             {isPaid ? (
                                                 <button

@@ -116,6 +116,28 @@ export default function TicketCard({ registration, onClose }: TicketCardProps) {
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Team Members Display */}
+                            {registration.teamMembers && registration.teamMembers.length > 1 && (
+                                <div className="text-right">
+                                    <label className="text-[10px] uppercase font-bold text-gray-500 mb-1 block">Team Members</label>
+                                    <div className="flex -space-x-2 justify-end">
+                                        {registration.teamMembers.filter((m: any) => m._id !== registration.creator?._id).slice(0, 4).map((member: any) => (
+                                            <div key={member._id} className="w-8 h-8 rounded-full bg-gray-800 border-2 border-[#0A0A0B] flex items-center justify-center text-[10px] font-bold text-gray-300" title={member.name}>
+                                                {member.name.charAt(0)}
+                                            </div>
+                                        ))}
+                                        {registration.teamMembers.length > 5 && (
+                                            <div className="w-8 h-8 rounded-full bg-gray-700 border-2 border-[#0A0A0B] flex items-center justify-center text-[10px] font-bold text-white">
+                                                +{registration.teamMembers.length - 5}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <p className="text-[10px] text-gray-400 mt-1">
+                                        + {registration.teamMembers.length - 1} others
+                                    </p>
+                                </div>
+                            )}
                         </div>
                     </div>
 
