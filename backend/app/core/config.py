@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     GOOGLE_CLIENT_ID: str
     GOOGLE_CLIENT_SECRET: str
-    BACKEND_CORS_ORIGINS: list[str] = ["http://localhost:3000", "http://localhost:5173", "http://localhost:5174"]
+    BACKEND_CORS_ORIGINS: list[str] | str = ["http://localhost:3000", "http://localhost:5173", "http://localhost:5174"]
 
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
     @classmethod
